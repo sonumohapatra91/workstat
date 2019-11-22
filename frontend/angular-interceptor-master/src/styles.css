@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@import url(https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css);
+@import "../node_modules/ngx-toastr/toastr.css";
+
+body{
+    margin: 0%;
+}
+.custom-dialog .mat-dialog-container {
+    padding: 1em;
+    height: 480px;
+    width: 800px; 
+  }
+.custom-dialog .text-center{
+    background: rgb(3, 20, 92);
+    padding: 10px;
+    color: aliceblue;
+  }
+
+

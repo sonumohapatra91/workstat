@@ -1,0 +1,40 @@
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+
+@Component({
+  selector: 'app-alert-dailog',
+  templateUrl: './alert-dailog.component.html',
+  styleUrls: ['./alert-dailog.component.css']
+})
+export class AlertDailogComponent implements OnInit {
+
+  title: string;
+  message: string;
+
+  constructor(public dialogRef: MatDialogRef<AlertDailogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: AlertDailogModel) {
+    // Update view with given values
+    this.title = data.title;
+    this.message = data.message;    
+  }
+
+  ngOnInit() {
+  }
+  onOK(): void {
+    // Close the dialog, return true
+    this.dialogRef.close(true);
+  }
+
+}
+
+/**
+ * Class to represent confirm dialog model.
+ *
+ * It has been kept here to keep it as part of shared component.
+ */
+export class AlertDailogModel {
+
+  constructor(public title: string, public message: string) {
+  }
+}

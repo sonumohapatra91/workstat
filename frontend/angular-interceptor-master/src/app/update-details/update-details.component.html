@@ -1,0 +1,101 @@
+<mat-dialog-content class="col-md-14">
+  <h2 class="text-center">Update Employee</h2>
+  <form name="form" (ngSubmit)="f.form.valid && updateDetails()" #f="ngForm" novalidate autocomplete="off">
+
+    <div class="form-group">
+      <label for="project">Project</label>
+      <input type="text" [(ngModel)]="employee.project" placeholder="Project" name="project" class="form-control"
+        id="project" #project="ngModel" [ngClass]="{ 'is-invalid': f.submitted && project.invalid }" required />
+
+      <div *ngIf="f.submitted && project.invalid" class="invalid-feedback">
+        <div *ngIf="project.errors.required">Project Name is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label for="manager">Customer</label>
+        <input [(ngModel)]="employee.customer" placeholder="Customer" name="Customer" class="form-control" id="Customer">
+      </div>
+
+    <div class="form-group">
+      <label for="manager">QC Manager</label>
+      <input [(ngModel)]="employee.manager" placeholder="Manager" name="manager" class="form-control" id="manager">
+    </div>
+
+    <div class="form-group">
+      <label for="tstatus">Requirements</label>
+      <textarea [(ngModel)]="employee.tstatus" placeholder="Requirements" name="Requirements" class="form-control"
+        id="tstatus"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="tools">Tools</label>
+      <input type="text" [(ngModel)]="employee.tools" placeholder="Tools" name="tools" class="form-control" id="tools">
+
+    </div>
+    <div class="form-group">
+      <label for="env">Environment</label>
+      <input type="text" [(ngModel)]="employee.env" placeholder="Environment" name="env" class="form-control" id="env">
+
+    </div>
+
+    <div class="form-group">
+      <label for="psdate">Planned Start Date</label>
+      <input [(ngModel)]="employee.psdate" name="psdate" type="text" placeholder="Planned Start Date" bsDatepicker
+        [bsConfig]="bsConfig" class="form-control" id="psdate">
+    </div>
+
+    <div class="form-group">
+      <label for="pedate">Planned End Date</label>
+      <input [(ngModel)]="employee.pedate" name="pedate" type="text" placeholder="Planned End Date" bsDatepicker
+        [bsConfig]="bsConfig" class="form-control" id="pedate">
+    </div>
+    <div class="form-group">
+      <label for="asdate">Actual Start Date</label>
+      <input type="text" [(ngModel)]="employee.asdate" name="asdate" type="text" placeholder="Actual Start Date"
+        bsDatepicker [bsConfig]="bsConfig" class="form-control" id="asdate">
+    </div>
+    <div class="form-group">
+      <label for="aedate">Actual End Date</label>
+      <input type="text" [(ngModel)]="employee.aedate" name="aedate" type="text" placeholder="Actual End Date"
+        bsDatepicker [bsConfig]="bsConfig" class="form-control" id="aedate">
+    </div>
+
+    <div class="form-group">
+      <label for="cstatus">Current Status</label>
+      <div class="radio-toolbar" data-toggle="buttons">
+
+        <input type="radio" id="progress" name="progress" value="In Progress" [(ngModel)]="employee.cstatus"
+          autocomplete="off">
+        <label for="progress" class="btn btn-warning"> In Progress</label>
+
+        <input type="radio" id="hold" name="hold" value="On Hold" [(ngModel)]="employee.cstatus" autocomplete="off">
+        <label for="hold" class="btn btn-danger"> On Hold</label>
+
+        <input type="radio" id="completed" name="completed" value="Completed" [(ngModel)]="employee.cstatus"
+          autocomplete="off">
+        <label for="completed" class="btn btn-success"> Completed</label>
+
+        <input type="radio" id="pipeline" name="pipeline" value="In Pipeline" [(ngModel)]="employee.cstatus"
+          autocomplete="off">
+        <label for="pipeline" class="btn btn-primary"> In Pipeline</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="resources">Resources</label>
+      <input [(ngModel)]="employee.resources" placeholder="Resources" name="Resources" class="form-control"
+        id="resources">
+    </div>
+    <div class="form-group">
+      <label for="remark">Remarks</label>
+      <textarea type="text" [(ngModel)]="employee.remark" placeholder="Remarks" name="Remark" class="form-control"
+        id="remark"></textarea>
+    </div>
+
+    <div mat-dialog-actions>
+      <button style="font-size:16px; padding: 5px;" class="btn btn-success">Update</button>
+      <button style="font-size:16px; padding: 5px;" class="btn btn-outline-warning"
+        (click)="closeDialog()">Cancel</button>
+    </div>
+  </form>
+</mat-dialog-content>

@@ -1,0 +1,103 @@
+<div class="table-responsive">
+  <div class="form-inline">
+    <div class="form-group form-inline">
+      <label style="font-weight:bold" for="search"> Search by Project/Manager/Resource :</label>
+      <input [(ngModel)]="searchText" type="text" placeholder="Search" name="search" class="form-control ml-2"
+        id="search" autocomplete="off" />
+    </div>
+    <div class="btn-group float-right mt-2" style="margin-left:22% ;margin-bottom:2% ">
+      <button (click)="btnFilter('Ongoing')" type="button" style="margin:1px" class="btn btn-info">All Ongoing</button>
+      <button (click)="btnFilter('In Progress')" type="button" style="margin:1px" class="btn btn-primary">In
+        Progress</button>
+      <button (click)="btnFilter('On Hold')" type="button" style="margin:1px" class="btn btn-danger">On Hold</button>
+      <button (click)="btnFilter('In Pipeline')" type="button" style="margin:1px" class="btn btn-basic">In
+        Pipeline</button>
+      <button (click)="btnFilter('Completed')" type="button" style="margin:1px"
+        class="btn btn-success">Completed</button>
+    </div>
+  </div>
+  <div *ngIf="loginService.isAdmin() && loginService.isUserLoggedIn()">
+    <span class="addbtn"><a mat-button routerLink="/addperfdetails" class="nav-link"><i class="fa fa-plus"
+          aria-hidden="true"></i>Add New Item</a></span>
+    <span class="deleteallbtn"><a mat-button (click)="delallBtn()" class="nav-link"><i class="fa fa-plus"
+          aria-hidden="true"></i>Delete All</a></span>
+  </div>
+  <table class="table table-sm table-bordered table-condensed">
+    <thead class="thead-dark">
+      <tr>
+        <th class="align-middle" scope="col" rowspan="2">Action</th>
+        <th class="align-middle" scope="col" rowspan="2">Project</th>
+        <th class="align-middle" scope="col" rowspan="2">Requirement</th>
+        <th class="align-middle" scope="col" colspan="2">Planned Date</th>
+        <th class="align-middle" scope="col" colspan="2">Actual Date</th>
+        <th class="align-middle" scope="col" rowspan="2">Remarks</th>
+        <th class="align-middle" scope="col" rowspan="2">Last Updated</th>
+      </tr>
+      <tr>
+        <th class="align-middle" scope="col">Start</th>
+        <th class="align-middle" scope="col">End</th>
+        <th class="align-middle" scope="col">Start</th>
+        <th class="align-middle" scope="col">End</th>
+      </tr>
+    </thead>
+
+    <tbody class="align-middle">
+      <ng-container *ngFor="let i = index; let perfemployee of perffilter_employee | filter : searchText">
+        <tr
+          [ngClass]="{'bgPrimary': perfemployee.cstatus === 'In Progress', 'bgWarning': perfemployee.cstatus === 'On Hold', 'bgBasic' : perfemployee.cstatus === 'In Pipeline', 'bgGreen' : perfemployee.cstatus === 'Completed'}"
+          class="c_hover">
+          <td style="width:5%" class="align-middle" scope="row">
+            <span *ngIf="loginService.isAdmin()" class="btn-group">
+              <a (click)="updatePerfDetails(perfemployee)">
+                <button class="btnedit"><i class="fa fa-edit"></i></button>
+              </a>
+              <a (click)="deletePerfEmployee(perfemployee)">
+                <button class="btndel"><i class="fa fa-trash"></i></button>
+              </a>
+            </span>
+            <span class="align-middle" class="btn-group">
+              <a (click)="toggle(i)">
+                <button class="btnshow">
+                  <i class="fas fa-angle-double-down" *ngIf="i != selectedRow"></i>
+                  <i class="fas {{buttonClass}}" *ngIf="i === selectedRow"></i>
+                </button>
+              </a>
+            </span>
+          </td>
+          <td class="align-middle" style="white-space: nowrap; width:7%; font-weight:bold; font-size: 14px">
+            {{perfemployee.project}} </td>
+          <td style="white-space: pre-wrap; width:15%">{{perfemployee.tstatus}}</td>
+          <td style="width:7%">{{perfemployee.psdate | date: 'dd-MMM-yyyy'}} </td>
+          <td style="width:7%">{{perfemployee.pedate | date: 'dd-MMM-yyyy'}} </td>
+          <td style="width:7%">{{perfemployee.asdate | date: 'dd-MMM-yyyy'}} </td>
+          <td style="width:7%">{{perfemployee.aedate | date: 'dd-MMM-yyyy'}} </td>
+          <td style="white-space: pre-wrap;">{{perfemployee.remark}}</td>
+          <td *ngIf="perfemployee.today" style="width:8%">{{perfemployee.today | date: format }} Time:
+            {{perfemployee.today | date:'shortTime' }} </td>
+        </tr>
+        <tr class="table-borderless expansion_bg" *ngIf="show && i === selectedRow">
+          <th></th>
+          <th class="align-middle" style="font-weight:bold" scope="col">Customer </th>
+          <th class="align-middle" style="font-weight:bold" scope="col">QC Manager </th>
+          <th class="align-middle" style="font-weight:bold; white-space: pre-wrap;" scope="col">Scenarios</th>
+          <th class="align-middle" style="font-weight:bold; white-space: pre-wrap;" scope="col">Users</th>
+          <th class="align-middle" style="font-weight:bold; white-space: pre-wrap;" scope="col">Env</th>
+          <th class="align-middle" style="font-weight:bold; white-space: pre-wrap;" colspan="2" scope="col">BUG-ID</th>
+          <th class="align-middle" style="font-weight:bold; white-space: pre-wrap;" scope="col">Resources</th>
+        </tr>
+
+        <tr class="table-borderless expansion_bg" *ngIf="show && i === selectedRow">
+          <td></td>
+          <td>{{perfemployee.customer}}</td>
+          <td>{{perfemployee.manager}}</td>
+          <td style="white-space: pre-wrap;">{{perfemployee.scenarios}}</td>
+          <td style="white-space: pre-wrap;">{{perfemployee.users}}</td>
+          <td>{{perfemployee.env}}</td>
+          <td style="white-space: pre-wrap;" colspan="2">{{perfemployee.bugid}}</td>
+          <td style="white-space: pre-wrap;">{{perfemployee.resources}}</td>
+        </tr>
+
+      </ng-container>
+    </tbody>
+  </table>
+</div>

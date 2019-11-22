@@ -1,0 +1,34 @@
+<div>
+  <mat-toolbar class="navbar navbar-dark bg-dark">
+      <mat-toolbar-row>
+    <!-- <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div> -->
+
+    <span mat-button class="companyName" >
+      <span>TSS Project Status</span>
+    </span>
+  
+    
+      <span class="example-spacer"></span>
+      <div fxShow="true" fxHide.lt-md="true">
+        <span><a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">Home</a></span>        
+        <span><a mat-button *ngIf="!loginService.isUserLoggedIn()" (click)="openLoginDialog()" class="nav-link">Login</a></span>
+        <span><a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></span>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+  <!-- <mat-sidenav-container fxFlexFill class="example-container" fxHide.gt-sm="true">
+  
+      <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
+        <div fxLayout="column">
+            <a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">View Employees</a>
+            <a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/adddetails" class="nav-link">Add New Employee</a>
+            <a mat-button *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a>
+            <a mat-button *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a>
+        </div>
+      </mat-sidenav>      
+    </mat-sidenav-container> -->

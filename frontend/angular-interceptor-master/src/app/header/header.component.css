@@ -1,0 +1,56 @@
+.companyName{
+    font-size: 110%;
+    color: whitesmoke ;
+}
+
+.mat-toolbar-multiple-rows {
+     min-height: 1px; 
+}
+.mat-toolbar-row{
+    height: 7vh;
+    padding: 0.5em;
+}
+
+div {
+    overflow: inherit;
+}
+
+.mat-sidenav-container{
+  background-color: whitesmoke;
+  min-height: 35vh !important;
+}
+
+a{
+    text-decoration: none;
+    font-size: 80%;
+    white-space: normal;
+    color: whitesmoke ;
+    outline: none;
+}
+  
+a:hover , a:active {
+  background-color: white ;
+  color:#212529;
+  outline: none;
+}
+.bg-dark {
+  background-color:  #3C5ABC!important;
+}
+button{
+    font-size: 80%;
+    min-width: min-content;
+    outline: none;
+}
+
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .mat-sidenav-content{
+      font-size: 200%;
+      text-align: center;
+  }

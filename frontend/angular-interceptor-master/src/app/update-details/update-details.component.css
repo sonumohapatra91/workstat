@@ -1,0 +1,23 @@
+
+  .radio-toolbar input[type="radio"] {
+    display: none;
+  }
+  .radio-toolbar input[type="radio"]:checked {
+   color: red !important;
+  } 
+
+  .btn{
+      font-size: 14px;
+      padding: 2px 3px;
+      margin: 2px 2px;
+      cursor: pointer;
+  }
+  
+  input[type="radio"]:checked + label{
+    color: white;
+    background: orangered;
+    font-weight: bold;
+   }
+  .mat-dialog-actions {
+    justify-content: flex-end;
+}

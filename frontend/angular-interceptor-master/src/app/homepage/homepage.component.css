@@ -1,0 +1,11 @@
+mat-card{
+    margin: 2em 8em;
+    width: 30%; 
+    height: 40%; 
+    display: inline-block;
+    cursor: pointer;
+}
+.image{
+    width: 400px;
+    height: 400px;
+}

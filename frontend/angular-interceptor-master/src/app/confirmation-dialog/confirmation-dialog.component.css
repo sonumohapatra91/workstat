@@ -1,0 +1,11 @@
+.yesBtn, .noBtn{
+    outline: none;
+}
+.yesBtn{
+    background: rgb(167, 27, 27);
+    color: azure;
+}
+.noBtn{
+    background: rgb(35, 143, 35); 
+    color: azure;
+}

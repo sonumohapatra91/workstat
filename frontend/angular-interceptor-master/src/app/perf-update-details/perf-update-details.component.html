@@ -1,0 +1,112 @@
+<mat-dialog-content class="col-md-14">
+  <h2 class="text-center">Update Employee</h2>
+  <form name="form" (ngSubmit)="f.form.valid && updatePerfDetails()" #f="ngForm" novalidate autocomplete="off">
+
+    <div class="form-group">
+      <label for="project">Project</label>
+      <input type="text" [(ngModel)]="perfemployee.project" placeholder="Project" name="project" class="form-control"
+        id="project" #project="ngModel" [ngClass]="{ 'is-invalid': f.submitted && project.invalid }" required />
+
+      <div *ngIf="f.submitted && project.invalid" class="invalid-feedback">
+        <div *ngIf="project.errors.required">Project Name is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="manager">QC Manager</label>
+      <input [(ngModel)]="perfemployee.manager" placeholder="Manager" name="manager" class="form-control" id="manager">
+    </div>
+
+    <div class="form-group">
+        <label for="customer">Customer</label>
+        <input [(ngModel)]="perfemployee.customer" placeholder="Customer" name="customer" class="form-control" id="customer">
+      </div>
+
+    <div class="form-group">
+      <label for="tstatus">Requirements</label>
+      <textarea [(ngModel)]="perfemployee.tstatus" placeholder="Requirements" name="Requirements" class="form-control"
+        id="tstatus"></textarea>
+    </div>
+   
+    <div class="form-group">
+        <label for="bugid">BUG ID</label>
+        <input type="text" [(ngModel)]="perfemployee.bugid" placeholder="BugID" name="bugid" class="form-control" id="bugid">
+    </div>
+
+    <div class="form-group">
+      <label for="env">Environment</label>
+      <input type="text" [(ngModel)]="perfemployee.env" placeholder="Environment" name="env" class="form-control" id="env">
+    </div>
+
+    <div class="form-group">
+      <label for="psdate">Planned Start Date</label>
+      <input [(ngModel)]="perfemployee.psdate" name="psdate" type="text" placeholder="Planned Start Date" bsDatepicker
+        [bsConfig]="bsConfig" class="form-control" id="psdate">
+    </div>
+
+    <div class="form-group">
+      <label for="pedate">Planned End Date</label>
+      <input [(ngModel)]="perfemployee.pedate" name="pedate" type="text" placeholder="Planned End Date" bsDatepicker
+        [bsConfig]="bsConfig" class="form-control" id="pedate">
+    </div>
+    <div class="form-group">
+      <label for="asdate">Actual Start Date</label>
+      <input type="text" [(ngModel)]="perfemployee.asdate" name="asdate" type="text" placeholder="Actual Start Date"
+        bsDatepicker [bsConfig]="bsConfig" class="form-control" id="asdate">
+    </div>
+    <div class="form-group">
+      <label for="aedate">Actual End Date</label>
+      <input type="text" [(ngModel)]="perfemployee.aedate" name="aedate" type="text" placeholder="Actual End Date"
+        bsDatepicker [bsConfig]="bsConfig" class="form-control" id="aedate">
+    </div>
+
+    <div class="form-group">
+      <label for="cstatus">Current Status</label>
+      <div class="radio-toolbar" data-toggle="buttons">
+
+        <input type="radio" id="progress" name="progress" value="In Progress" [(ngModel)]="perfemployee.cstatus"
+          autocomplete="off">
+        <label for="progress" class="btn btn-warning"> In Progress</label>
+
+        <input type="radio" id="hold" name="hold" value="On Hold" [(ngModel)]="perfemployee.cstatus" autocomplete="off">
+        <label for="hold" class="btn btn-danger"> On Hold</label>
+
+        <input type="radio" id="completed" name="completed" value="Completed" [(ngModel)]="perfemployee.cstatus"
+          autocomplete="off">
+        <label for="completed" class="btn btn-success"> Completed</label>
+
+        <input type="radio" id="pipeline" name="pipeline" value="In Pipeline" [(ngModel)]="perfemployee.cstatus"
+          autocomplete="off">
+        <label for="pipeline" class="btn btn-primary"> In Pipeline</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="resources">Resources</label>
+      <input [(ngModel)]="perfemployee.resources" placeholder="Resources" name="Resources" class="form-control"
+        id="resources">
+    </div>
+    
+    <div class="form-group">
+        <label for="scenarios">Scenarios</label>
+        <input type="text" [(ngModel)]="perfemployee.scenarios" placeholder="Scenarios" name="scenarios" class="form-control" id="scenarios">
+    </div>
+    
+    <div class="form-group">
+        <label for="users">Users</label>
+        <input type="text" [(ngModel)]="perfemployee.users" placeholder="Users" name="users" class="form-control" id="users">
+    </div> 
+
+    <div class="form-group">
+      <label for="remark">Remarks</label>
+      <textarea type="text" [(ngModel)]="perfemployee.remark" placeholder="Remarks" name="Remark" class="form-control"
+        id="remark"></textarea>
+    </div>
+
+    <div mat-dialog-actions>
+      <button style="font-size:16px; padding: 5px;" class="btn btn-success">Update</button>
+      <button style="font-size:16px; padding: 5px;" class="btn btn-outline-warning"
+        (click)="closeDialog()">Cancel</button>
+    </div>
+  </form>
+</mat-dialog-content>

@@ -1,0 +1,189 @@
+<div class="container">
+  <h2 class="text-center">Add Details</h2>
+  <div>
+    <mat-toolbar class="navbar navbar-dark bg-dark">
+      <mat-toolbar-row>
+        <span>
+          <a mat-button *ngIf="loginService.isAdmin() && loginService.isUserLoggedIn()" routerLink="/security"
+            class="goback"><i class="fas fa-arrow-left"></i> Go Back</a>
+        </span>
+        <span class="example-spacer"></span>
+        <span>
+          <a (click)="importHelp()">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+          </a>
+        </span>        
+        <span>
+          <label class="cust-import">
+            <input style="display: none;" id="uploadBtn" type="file" (change)="readExcel($event)"
+              class="upload input-common" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              required />
+            <i style="white-space: nowrap; font-size:15px; color: white; font-weight:bold; margin: 2px;"
+              class="fas fa-file-import"></i>
+            Import from Excel
+          </label>
+        </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+
+  <div>
+    <div class="row">
+      <div class="col-md-3">
+        <form name="form" (ngSubmit)="f.form.valid && createEmployee()" #f="ngForm" novalidate autocomplete="off">
+          <div class="form-group">
+            <label for="project">Project</label>
+            <input type="text" [(ngModel)]="employee.project" placeholder="Project" name="project" class="form-control"
+              id="project" #project="ngModel" [ngClass]="{ 'is-invalid': f.submitted && project.invalid }" required />
+
+            <div *ngIf="f.submitted && project.invalid" class="invalid-feedback">
+              <div class="errortag" *ngIf="project.errors.required">**Project Name is required**</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="customer">Customer</label>
+            <input type="text" [(ngModel)]="employee.customer" placeholder="Customer" name="customer" class="form-control"
+              id="customer">
+          </div>
+
+          <div class="form-group">
+            <label for="manager">QC Manager</label>
+            <input type="text" [(ngModel)]="employee.manager" placeholder="Manager" name="manager" class="form-control"
+              id="manager">
+          </div>
+
+          <div class="form-group">
+            <label for="tstatus">Requirements</label>
+            <textarea [(ngModel)]="employee.tstatus" placeholder="Requirements" name="Requirements" class="form-control"
+              id="tstatus"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="tools">Tools</label>
+            <input type="text" [(ngModel)]="employee.tools" placeholder="Tools" name="tools" class="form-control"
+              id="tools">
+          </div>
+          <div class="form-group">
+            <label for="env">Environment</label>
+            <input type="text" [(ngModel)]="employee.env" placeholder="Environment" name="env" class="form-control"
+              id="env">
+          </div>
+
+          <div class="form-group">
+            <label for="psdate">Planned Start Date</label>
+            <input [(ngModel)]="employee.psdate" name="psdate" type="text" placeholder="Planned Start Date" bsDatepicker
+              [bsConfig]="bsConfig" class="form-control" id="psdate" />
+          </div>
+
+          <div class="form-group">
+            <label for="pedate">Planned End Date</label>
+            <input [(ngModel)]="employee.pedate" name="pedate" type="text" placeholder="Planned End Date" bsDatepicker
+              [bsConfig]="bsConfig" class="form-control" id="pedate">
+          </div>
+          <div class="form-group">
+            <label for="asdate">Actual Start Date</label>
+            <input type="text" [(ngModel)]="employee.asdate" name="asdate" type="text" placeholder="Actual Start Date"
+              bsDatepicker [bsConfig]="bsConfig" class="form-control" id="asdate">
+          </div>
+          <div class="form-group">
+            <label for="aedate">Actual End Date</label>
+            <input type="text" [(ngModel)]="employee.aedate" name="aedate" type="text" placeholder="Actual End Date"
+              bsDatepicker [bsConfig]="bsConfig" class="form-control" id="aedate">
+          </div>
+
+          <div class="form-group">
+            <label for="cstatus">Current Status</label>
+            <div class="radio-toolbar" data-toggle="buttons" required>
+
+              <input type="radio" id="progress" name="progress" value="In Progress" #cstatus="ngModel"
+                [(ngModel)]="employee.cstatus" [ngClass]="{ 'is-invalid': f.submitted && cstatus.invalid }"
+                autocomplete="off" required>
+              <label for="progress" class="btn btn-warning"> In Progress</label>
+
+              <input type="radio" id="hold" name="hold" value="On Hold" #cstatus="ngModel"
+                [(ngModel)]="employee.cstatus" [ngClass]="{ 'is-invalid': f.submitted && cstatus.invalid }"
+                autocomplete="off" required>
+              <label for="hold" class="btn btn-danger"> On Hold</label>
+
+              <input type="radio" id="completed" name="completed" value="Completed" #cstatus="ngModel"
+                [(ngModel)]="employee.cstatus" [ngClass]="{ 'is-invalid': f.submitted && cstatus.invalid }"
+                autocomplete="off" required>
+              <label for="completed" class="btn btn-success"> Completed</label>
+
+              <input type="radio" id="pipeline" name="pipeline" value="In Pipeline" #cstatus="ngModel"
+                [(ngModel)]="employee.cstatus" [ngClass]="{ 'is-invalid': f.submitted && cstatus.invalid }"
+                autocomplete="off" required>
+              <label for="pipeline" class="btn btn-primary"> In Pipeline</label>
+            </div>
+            <div *ngIf="f.submitted && cstatus.invalid">
+              <div class="errortag">**Status is required**</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="resources">Resources</label>
+            <input [(ngModel)]="employee.resources" placeholder="Resources" name="Resources" class="form-control"
+              id="resources">
+          </div>
+          <div class="form-group">
+            <label for="remark">Remarks</label>
+            <textarea type="text" [(ngModel)]="employee.remark" placeholder="Remarks" name="Remark" class="form-control"
+              id="remark"></textarea>
+          </div>
+          <div class="sticky">
+            <button style="font-size:16px; padding: 5px;" class="btn btn-success">
+              <i style="font-size:14px" class="fas fa-save"></i>Save
+            </button>
+          </div>
+        </form>
+        <div class="sticky1">
+          <button (click)="createAllEmployee()" style="font-size:16px; padding: 5px;" class="btn btn-success">
+            <i style="font-size:14px" class="fas fa-save"></i> Save All 
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <table class="table table-sm table-bordered table-condensed">
+          <thead class="thead-dark">
+            <tr>
+              <th class="align-middle" scope="col" rowspan="2">Project</th>
+              <th class="align-middle" scope="col" rowspan="2">QC Manager</th>
+              <th class="align-middle" scope="col" rowspan="2">Requirements</th>
+              <th class="align-middle" scope="col" rowspan="2">Tools</th>
+              <th class="align-middle" scope="col" colspan="2">Planned Date</th>
+              <th class="align-middle" scope="col" colspan="2">Actual Date</th>
+              <th class="align-middle" scope="col" rowspan="2">Remarks</th>
+              <th class="align-middle" scope="col" rowspan="2">Environment</th>
+              <th class="align-middle" scope="col" rowspan="2">Resources</th>
+            </tr>
+            <tr>
+              <th class="align-middle" scope="col">Start</th>
+              <th class="align-middle" scope="col">End</th>
+              <th class="align-middle" scope="col">Start</th>
+              <th class="align-middle" scope="col">End</th>
+            </tr>
+          </thead>
+
+          <tbody class="align-middle">
+            <ng-container *ngFor="let i = index; let data of employees">
+              <tr (click)="createfromExcel(data)" class="c_hover">
+                <td class="align-middle" style="white-space: nowrap;">{{data.Project}} </td>
+                <td class="align-middle" style="font-weight:bold">{{data.QC_Manager}}</td>
+                <td style="width:15%">{{data.Requirement}}</td>
+                <td style="width:15%">{{data.Tools}}</td>
+                <td style="width:8%">{{data.PSD | date: format}} </td>
+                <td style="width:8%"> {{data.PED | date: format}}</td>
+                <td style="width:8%">{{data.ASD | date: format}} </td>
+                <td style="width:8%">{{data.AED | date: format}}</td>
+                <td class="align-middle">{{data.Remarks}}</td>
+                <td class="align-middle">{{data.Env}}</td>
+                <td class="align-middle">{{data.Resources}}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

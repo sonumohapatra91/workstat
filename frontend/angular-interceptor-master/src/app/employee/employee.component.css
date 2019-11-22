@@ -1,0 +1,115 @@
+@charset "ISO-8859-1";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+
+.blue { color: #185875; }
+.yellow { color: #FFF842; }
+
+.table .thead-dark th {
+	font-weight:normal;
+	text-align: center;
+	background-color:#3C5ABC;
+	border-color: #3C5ABC;
+}
+.table_container{
+	margin-top: 2em;
+	width: 100% !important;	
+}
+.c_hover:hover {   
+    background-color: #d6eefa;
+}
+.table-responsive{
+	width: 99% !important;
+	margin-top: 2em;
+	margin-left: 0.5em;
+	
+}
+.expansion_bg{
+	background: rgb(180, 255, 161);
+}
+td{
+	font-size: 13px;
+}
+
+.bgPrimary{
+	color: #007bff;
+	
+}
+.bgWarning{
+	color: #f70c0c;
+	
+}
+.bgBasic{
+	color: #3f3c3d;
+}
+.bgGreen{
+	color: #28a745;
+}
+
+button{
+	outline: none;
+}
+.btndel {
+	background-color:rgb(167, 11, 11);
+	border: none;
+	border-radius: 100%;
+	color: white;
+	padding: 5px 9px;
+	font-size: 14px;
+	cursor: pointer;
+	margin: 1em;
+	outline: none;
+	vertical-align: center;
+  }
+  .btnedit {
+	background-color:rgb(202, 193, 57);
+	border: none;
+	border-radius: 100%;
+	color: white;
+	padding: 5px 8px;
+	font-size: 14px;
+	cursor: pointer;
+	margin: 1em 0 1em 1em;
+	outline: none;
+	vertical-align: center;
+  }
+  .btnshow{
+	background-color:rgb(29, 206, 38);
+	border: none;
+	border-radius: 10px;
+	color: white;
+	padding: 6px 30px;
+	font-size: 14px;
+	cursor: pointer;
+	margin: 1em 0 1em 1em;
+	outline: none;
+	vertical-align: center;
+  }
+  .addbtn{
+	background-color:rgb(29, 206, 38);
+	color: whitesmoke;
+	padding: 5px 2px;
+	border-radius: 5px;
+  }
+  .addbtn:hover{
+	background-color: rgb(51, 173, 2);		
+  }
+  .deleteallbtn{
+	background-color:rgb(182, 22, 22);
+	color: whitesmoke;
+	padding: 5px 2px;
+	margin-left: 1em;
+	border-radius: 5px;
+  }
+  .deleteallbtn:hover{ 
+	background-color: rgb(139, 0, 0);
+  }
+  .nav-link:hover{
+	color: white;
+  }
+  .fa-plus{
+	font-size: 12px;
+	margin-bottom:3px;
+	margin-right: 5px;
+}
+  
